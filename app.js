@@ -15,10 +15,10 @@ if (command === 'list') {
   var note = notes.addNote(argv.title, argv.body);
   
   // test
-  if (typeof note === 'undefined') {
-    console.log('Note title already exists');
-  } else {
+  if (note) {
     console.log('Note created');
+  } else {
+    console.log('Note title already exists');
     console.log('--');
     console.log(`Title: ${note.title}`);
     console.log(`Body: ${note.body}`);    
@@ -27,7 +27,12 @@ if (command === 'list') {
 } else if (command === 'read') {
   notes.readNote(argv.title)
 } else if (command === 'remove') {
-  notes.removeNote(argv.title);
+  var removedNote = notes.removeNote(argv.title);
+
+  // test
+
+  var message = removedNote ? 'Note is removed' : 'Note not exists';
+  console.log(message);
 } else {
   console.log('unknown command')
-}
+};

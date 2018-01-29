@@ -28,6 +28,7 @@ var addNote = (title, body) => {
   if (dublicateNotes.length === 0) {
     notes.push(note);
     saveNotes(notes);
+    
     return note;
   }
 };
@@ -37,7 +38,11 @@ var getAll = () => {
 };
 
 var removeNote = (title) => {
-  console.log('removing note', title)
+  var notes = fetchNotes();
+  var filteredNotes = notes.filter(note => note.title !== title);
+  saveNotes(filteredNotes);
+
+  return notes.length !== filteredNotes.length;
 };
 
 var readNote = (title) => {
