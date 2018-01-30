@@ -6,9 +6,6 @@ const notes = require('./notes.js');
 const argv = yargs.argv;
 var command = argv._[0];
 
-console.log('Command: ', command);
-console.log('Yards:', argv);
-
 if (command === 'add') {
   var note = notes.addNote(argv.title, argv.body);
 
@@ -20,7 +17,9 @@ if (command === 'add') {
     console.log('Note title already exists');
   }
 } else if (command === 'list') {
-  notes.getAll();
+  var allNotes = notes.getAll();
+  console.log(`Printing ${allNotes.length} note(s)`);
+  allNotes.forEach(element => notes.logNote(element));
 } else if (command === 'read') {
   var note = notes.getNote(argv.title);
 

@@ -1,5 +1,3 @@
-console.log('it works');
-
 const fs = require('fs');
 
 var fetchNotes = () => {
@@ -39,9 +37,7 @@ var getNote = (title) => {
   return filteredNotes[0];
 };
 
-var getAll = () => {
-  console.log('Getting all notes');
-};
+var getAll = () => fetchNotes();
 
 var removeNote = (title) => {
   var notes = fetchNotes();
