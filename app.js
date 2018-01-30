@@ -9,28 +9,32 @@ var command = argv._[0];
 console.log('Command: ', command);
 console.log('Yards:', argv);
 
-if (command === 'list') {
-  notes.getAll();
-} else if (command === 'add') {
+if (command === 'add') {
   var note = notes.addNote(argv.title, argv.body);
-  
+
   // test
   if (note) {
     console.log('Note created');
+    notes.logNote(note);
   } else {
     console.log('Note title already exists');
-    console.log('--');
-    console.log(`Title: ${note.title}`);
-    console.log(`Body: ${note.body}`);    
-  };
-
+  }
+} else if (command === 'list') {
+  notes.getAll();
 } else if (command === 'read') {
-  notes.readNote(argv.title)
+  var note = notes.getNote(argv.title);
+
+  // test
+  if (note) {
+    console.log('Note found');
+    notes.logNote(note);
+  } else {
+    console.log('Note not found');
+  }
 } else if (command === 'remove') {
   var removedNote = notes.removeNote(argv.title);
 
   // test
-
   var message = removedNote ? 'Note is removed' : 'Note not exists';
   console.log(message);
 } else {

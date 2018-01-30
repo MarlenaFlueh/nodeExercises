@@ -22,7 +22,6 @@ var addNote = (title, body) => {
     body
   };
 
-
   var dublicateNotes = notes.filter(note => note.title === title);
 
   if (dublicateNotes.length === 0) {
@@ -31,6 +30,13 @@ var addNote = (title, body) => {
     
     return note;
   }
+};
+
+var getNote = (title) => {
+  var notes = fetchNotes();
+  var filteredNotes = notes.filter(note => note.title === title);
+
+  return filteredNotes[0];
 };
 
 var getAll = () => {
@@ -45,13 +51,16 @@ var removeNote = (title) => {
   return notes.length !== filteredNotes.length;
 };
 
-var readNote = (title) => {
-  console.log('reading note', title)
+var logNote = (note) => {
+  console.log('--');
+  console.log(`Title: ${note.title}`);
+  console.log(`Body: ${note.body}`);
 };
 
 module.exports = {
   addNote,
   getAll,
   removeNote,
-  readNote
+  getNote,
+  logNote
 };
